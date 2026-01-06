@@ -4,11 +4,11 @@ import json
 import zipfile
 from pathlib import Path
 
-# Paths
+
 MODEL_DIR = Path("model")
-MODEL_ZIP_PATH = MODEL_DIR / "price_model.zip"      # contains price_model.joblib
-MODEL_PATH = MODEL_DIR / "price_model.joblib"       # extracted model file
-METADATA_PATH = MODEL_DIR / "metadata.json"         # stays normal
+MODEL_ZIP_PATH = MODEL_DIR / "price_model.zip"     
+MODEL_PATH = MODEL_DIR / "price_model.joblib"       
+METADATA_PATH = MODEL_DIR / "metadata.json"        
 
 
 def _ensure_model_unzipped():
@@ -48,3 +48,4 @@ def predict_price_with_range(input_data: dict):
     high = pred + band
 
     return pred, low, high, band
+
