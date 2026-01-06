@@ -1,12 +1,33 @@
 import pandas as pd
 import joblib
 import json
+import zipfile
+from pathlib import Path
 
-MODEL_PATH = "model/price_model.joblib"
-METADATA_PATH = "model/metadata.json"
+# Paths
+MODEL_DIR = Path("model")
+MODEL_ZIP_PATH = MODEL_DIR / "price_model.zip"      # contains price_model.joblib
+MODEL_PATH = MODEL_DIR / "price_model.joblib"       # extracted model file
+METADATA_PATH = MODEL_DIR / "metadata.json"         # stays normal
+
+
+def _ensure_model_unzipped():
+    """
+    Ensure price_model.joblib exists.
+    If missing, extract it from price_model.zip.
+    """
+    if MODEL_PATH.exists():
+        return  # Already extracted
+
+    if MODEL_ZIP_PATH.exists():
+        with zipfile.ZipFile(MODEL_ZIP_PATH, "r") as zf:
+            zf.extractall(MODEL_DIR)
+    else:
+        raise FileNotFoundError("Model ZIP file not found.")
 
 
 def load_model():
+    _ensure_model_unzipped()
     return joblib.load(MODEL_PATH)
 
 
@@ -22,7 +43,7 @@ def predict_price_with_range(input_data: dict):
     df = pd.DataFrame([input_data])
     pred = float(model.predict(df)[0])
 
-    band = float(meta["p80_abs_error"])  # ± band for ~80% range
+    band = float(meta["p80_abs_error"])
     low = max(0.0, pred - band)
     high = pred + band
 
