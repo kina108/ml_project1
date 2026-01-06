@@ -12,10 +12,7 @@ METADATA_PATH = MODEL_DIR / "metadata.json"
 
 
 def _ensure_model_unzipped():
-    """
-    Ensure price_model.joblib exists.
-    If missing, extract it from price_model.zip.
-    """
+
     if MODEL_PATH.exists():
         return  # Already extracted
 
@@ -48,4 +45,5 @@ def predict_price_with_range(input_data: dict):
     high = pred + band
 
     return pred, low, high, band
+
 
