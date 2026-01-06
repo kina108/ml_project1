@@ -42,7 +42,7 @@ def clean_data(df):
     df["year"] = df["month"].dt.year
     df["month_num"] = df["month"].dt.month
 
-    # Feature engineering
+    
     df["remaining_lease_years"] = df["remaining_lease"].apply(parse_remaining_lease)
     df["storey_mid"] = df["storey_range"].apply(
         lambda x: np.mean([int(i) for i in str(x).split(" TO ")])
@@ -118,7 +118,6 @@ def main():
     print("Loading data...")
     df_raw = pd.read_csv(DATA_PATH)
 
-    # Track dataset month range (for honesty + README)
     month_min = str(df_raw["month"].min())
     month_max = str(df_raw["month"].max())
 
@@ -165,4 +164,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
