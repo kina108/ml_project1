@@ -14,7 +14,7 @@ METADATA_PATH = MODEL_DIR / "metadata.json"
 def _ensure_model_unzipped():
 
     if MODEL_PATH.exists():
-        return  # Already extracted
+        return 
 
     if MODEL_ZIP_PATH.exists():
         with zipfile.ZipFile(MODEL_ZIP_PATH, "r") as zf:
@@ -45,5 +45,6 @@ def predict_price_with_range(input_data: dict):
     high = pred + band
 
     return pred, low, high, band
+
 
 
