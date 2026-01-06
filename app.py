@@ -24,7 +24,6 @@ town = st.selectbox(
 
 flat_type = st.selectbox("Flat Type", ["2 ROOM", "3 ROOM", "4 ROOM", "5 ROOM", "EXECUTIVE"])
 
-# Keep a small list for v1; your model can handle more, but UI can expand later
 flat_model = st.selectbox(
     "Flat Model",
     ["Improved", "New Generation", "Model A", "Standard", "Premium Apartment"]
@@ -37,8 +36,6 @@ remaining_lease_years = st.number_input("Remaining Lease (years)", 1.0, 99.0, 60
 year = st.number_input("Transaction Year", 2017, 2026, 2024)
 month_num = st.number_input("Transaction Month", 1, 12, 6)
 
-# Simple approximation: assume 99-year lease
-# lease_commence_date ≈ year - (99 - remaining_lease_years)
 lease_commence_date = int(round(year - (99 - remaining_lease_years)))
 
 if st.button("Predict Price"):
@@ -63,5 +60,6 @@ if st.button("Predict Price"):
 \\${low:,.0f} to \\${high:,.0f} (±\\${band:,.0f})
 """
 )
+
 
 
