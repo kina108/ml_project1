@@ -37,7 +37,7 @@ def parse_remaining_lease(lease):
 
 
 def clean_data(df):
-    # Convert month to datetime, then extract numeric time features
+ 
     df["month"] = pd.to_datetime(df["month"])
     df["year"] = df["month"].dt.year
     df["month_num"] = df["month"].dt.month
@@ -48,7 +48,6 @@ def clean_data(df):
         lambda x: np.mean([int(i) for i in str(x).split(" TO ")])
     )
 
-    # Drop columns we don't want to model on
     df = df.drop(
         columns=[
             "month",
@@ -60,14 +59,14 @@ def clean_data(df):
         errors="ignore",
     )
 
-    # Drop missing rows (simple v1)
+  
     df = df.dropna()
 
     return df
 
 
 def split_data_timebased(df):
-    # Sort chronologically so test is "future" relative to train
+
     df = df.sort_values(by=["year", "month_num"])
 
     X = df.drop("resale_price", axis=1)
@@ -94,7 +93,7 @@ def build_pipeline(X):
         ]
     )
 
-    # Keep it reasonable (faster than huge forests, still strong baseline)
+  
     model = RandomForestRegressor(
         n_estimators=50,
         max_depth=18,
@@ -141,7 +140,6 @@ def main():
     mae = mean_absolute_error(y_test, preds)
     abs_err = np.abs(y_test.to_numpy() - preds)
 
-    # 80% prediction range based on absolute error distribution on test set
     p80_abs_error = float(np.quantile(abs_err, 0.80))
 
     print(f"Test MAE: ${mae:,.0f}")
@@ -167,3 +165,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
