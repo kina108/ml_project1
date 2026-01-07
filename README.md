@@ -94,7 +94,7 @@ hdb-price-predictor/
 ├── requirements.txt
 │
 ├── model/
-│   ├── price_model.joblib # Trained model pipeline
+│   ├── price_model.joblib  -Trained model pipeline
 │   ├── price_model.zip    -Zipped model for deployment
 │   └── metadata.json      -MAE and error band information
 │
