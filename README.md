@@ -84,19 +84,23 @@ The trained model and metadata are loaded at runtime.
 
 ## Project structure
 
+## Project structure
+
+```text
 hdb-price-predictor/
-├── app.py # Streamlit user interface
-├── predict.py # Model loading and price prediction logic
-├── train.py # Data cleaning, training, and evaluation
+├── app.py                 - Streamlit user interface
+├── predict.py             - Model loading and price prediction logic
+├── train.py               - Data cleaning, training, and evaluation
 ├── requirements.txt
 │
 ├── model/
-│ ├── price_model.joblib # Trained model pipeline
-│ ├── price_model.zip # Zipped model for deployment
-│ └── metadata.json # MAE and error band information
+│   ├── price_model.joblib # Trained model pipeline
+│   ├── price_model.zip    -Zipped model for deployment
+│   └── metadata.json      -MAE and error band information
 │
 └── data/
-└── resale_raw.csv # Raw HDB resale dataset (used for training)
+    └── resale_raw.csv     - Raw HDB resale dataset used for training
+
 
 ## Running Locally
 1. pip install -r requirements.txt
