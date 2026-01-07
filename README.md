@@ -99,6 +99,12 @@ hdb-price-predictor/
 └── data/
     └── resale_raw.csv     - Raw HDB resale dataset used for training
 
+```
+## Running Locally
+1. install the dependancies in requirements.txt
+2. python train.py
+3. python -m streamlit run app.py
+
 
 
 
