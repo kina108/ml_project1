@@ -4,7 +4,7 @@ A simple machine learning app that estimates **HDB resale prices in Singapore** 
 
 The goal of this project is to provide a **reasonable price estimate with uncertainty**, not an exact valuation. It is intended as an educational and exploratory tool.
 
-**Live demo:** _Streamlit Community Cloud link_
+**Live demo:** https://mlproject1-7afngpmgnidqvjmd6els7p.streamlit.app/
 
 ---
 
